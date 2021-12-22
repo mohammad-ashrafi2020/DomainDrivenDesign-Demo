@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Clean_arch.Infrastructure</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Persistant.Ef\" />
+    <Folder Include="Persistent.Memory\Products\" />
+    <Folder Include="Persistent.Memory\Orders\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Clean-arch.Application\Clean-arch.Application.csproj" />
+  </ItemGroup>
+
+</Project>
