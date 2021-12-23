@@ -3,7 +3,7 @@ using Clean_arch.Domain.Shared;
 
 namespace Clean_arch.Domain.Products;
 
-public class Product
+public class Product : AggregateRoot
 {
     public Guid Id { get; private set; }
     public string Title { get; private set; }

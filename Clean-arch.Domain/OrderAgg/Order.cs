@@ -1,27 +1,27 @@
 ﻿using Clean_arch.Domain.OrderAgg;
+using Clean_arch.Domain.OrderAgg.Events;
 using Clean_arch.Domain.OrderAgg.Services;
 using Clean_arch.Domain.Shared;
 
 namespace Clean_arch.Domain.Orders;
 
-public class Order
+public class Order : AggregateRoot
 {
-    public long Id { get; private set; }
-    public Guid ProductId { get; private set; }
-
+    public long UserId { get; private set; }
     public int TotalPrice;
     public int TotalItems { get; set; }
     public bool IsFinally { get; private set; }
     public DateTime FinallyDate { get; private set; }
     public ICollection<OrderItem> Items { get; private set; }
-    public Order(Guid productId)
+    public Order(long userId)
     {
-        ProductId = productId;
+        UserId = userId;
     }
     public void Finally()
     {
         IsFinally = true;
         FinallyDate = DateTime.Now;
+        AddDomainEvent(new OrderFinalized(Id, UserId));
     }
     public void AddItem(Guid productId, int count, int price, IOrderDomainService orderService)
     {

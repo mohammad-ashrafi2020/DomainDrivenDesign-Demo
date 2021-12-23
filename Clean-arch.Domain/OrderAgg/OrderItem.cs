@@ -3,7 +3,7 @@ using Clean_arch.Domain.Shared;
 
 namespace Clean_arch.Domain.OrderAgg
 {
-    public class OrderItem
+    public class OrderItem:BaseEntity
     {
         public OrderItem(long orderId, int count, Guid productId, Mony price)
         {
