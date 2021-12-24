@@ -17,7 +17,7 @@ namespace Clean_arch.Application.Orders.Services
             _productRepository = productRepository;
         }
 
-        public bool IsProductNotExsist(Guid productId)
+        public bool IsProductNotExsist(long productId)
         {
             var productIsExsit = _productRepository.IsProductExist(productId);
 

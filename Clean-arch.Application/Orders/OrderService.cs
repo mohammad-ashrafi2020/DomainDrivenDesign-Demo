@@ -41,7 +41,6 @@ public class OrderService : IOrderService
         return new OrderDto()
         {
             Id = order.Id,
-            ProductId = order.ProductId
         };
     }
 
@@ -50,7 +49,6 @@ public class OrderService : IOrderService
         return _repository.GetList().Select(order => new OrderDto()
         {
             Id = order.Id,
-            ProductId = order.ProductId
         }).ToList();
     }
 }

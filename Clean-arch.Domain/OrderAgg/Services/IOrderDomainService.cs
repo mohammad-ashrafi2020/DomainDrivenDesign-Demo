@@ -8,6 +8,6 @@ namespace Clean_arch.Domain.OrderAgg.Services
 {
     public interface IOrderDomainService
     {
-        bool IsProductNotExsist(Guid productId);
+        bool IsProductNotExsist(long productId);
     }
 }
