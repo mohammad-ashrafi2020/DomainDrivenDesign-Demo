@@ -5,10 +5,10 @@ namespace Clean_arch.Domain.Products;
 public interface IProductRepository
 {
     List<Product> GetList();
-    Product GetById(Guid id);
+    Product GetById(long id);
     void Add(Product product);
     void Update(Product product);
     void Remove(Product product);
     void Save();
-    bool IsProductExist(Guid id);
+    bool IsProductExist(long id);
 }

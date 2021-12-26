@@ -28,7 +28,7 @@ public class ProductService : IProductService
         _repository.Save();
     }
 
-    public ProductDto GetProductById(Guid productId)
+    public ProductDto GetProductById(long productId)
     {
         var product = _repository.GetById(productId);
         return new ProductDto()

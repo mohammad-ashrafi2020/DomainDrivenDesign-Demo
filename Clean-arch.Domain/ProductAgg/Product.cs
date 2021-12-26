@@ -6,7 +6,6 @@ namespace Clean_arch.Domain.Products;
 
 public class Product : AggregateRoot
 {
-    public Guid Id { get; private set; }
     public string Title { get; private set; }
     public Mony Price { get; private set; }
     public ICollection<ProductImages> Images { get; private set; }
@@ -15,7 +14,6 @@ public class Product : AggregateRoot
         Guard(title);
         Title = title;
         Price = price;
-        Id = Guid.NewGuid();
     }
 
     public void Edit(string title, Mony price)

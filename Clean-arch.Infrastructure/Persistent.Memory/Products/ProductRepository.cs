@@ -14,7 +14,7 @@ public class ProductRepository : IProductRepository
         return _context.Products;
     }
 
-    public Product GetById(Guid id)
+    public Product GetById(long id)
     {
         return _context.Products.FirstOrDefault(f => f.Id == id);
     }
@@ -41,7 +41,7 @@ public class ProductRepository : IProductRepository
         //
     }
 
-    public bool IsProductExist(Guid id)
+    public bool IsProductExist(long id)
     {
         return _context.Products.Any(p => p.Id == id);
     }
