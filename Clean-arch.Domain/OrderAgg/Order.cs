@@ -32,7 +32,7 @@ public class Order : AggregateRoot
         if (Items.Any(p => p.ProductId == productId))
             return;
 
-        Items.Add(new OrderItem(Id, count, productId, Mony.FromTooman(price)));
+        Items.Add(new OrderItem(Id, count, productId, Money.FromTooman(price)));
         TotalItems += count;
     }
     public void RemoveItem(long productId)

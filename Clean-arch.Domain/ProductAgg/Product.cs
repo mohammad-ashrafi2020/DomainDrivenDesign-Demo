@@ -7,26 +7,27 @@ namespace Clean_arch.Domain.Products;
 public class Product : AggregateRoot
 {
     public string Title { get; private set; }
-    public Mony Price { get; private set; }
+    public Money Money { get; private set; }
     public ICollection<ProductImages> Images { get; private set; }
-    public Product(string title, Mony price)
+    public Product(string title, Money price)
     {
         Guard(title);
         Title = title;
-        Price = price;
+        Money = price;
+        Images = new List<ProductImages>();
     }
 
-    public void Edit(string title, Mony price)
+    public void Edit(string title, Money price)
     {
         Guard(title);
         Title = title;
-        Price = price;
+        Money = price;
     }
     public void RemoveImage(long id)
     {
         var image = Images.FirstOrDefault(f => f.Id == id);
         if (image == null)
-            throw new Exception("test");
+            throw new NullOrEmptyDomainDataException("Image not found");
 
         Images.Remove(image);
     }

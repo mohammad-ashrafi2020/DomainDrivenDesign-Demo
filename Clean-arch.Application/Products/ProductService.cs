@@ -15,14 +15,14 @@ public class ProductService : IProductService
 
     public void AddProduct(AddProductDto command)
     {
-        _repository.Add(new Product(command.Title,Mony.FromTooman(command.Price)));
+        _repository.Add(new Product(command.Title,Money.FromTooman(command.Price)));
         _repository.Save();
     }
 
     public void EditProduct(EditProductDto command)
     {
         var product = _repository.GetById(command.Id);
-        product.Edit(command.Title, Mony.FromTooman(command.Price));
+        product.Edit(command.Title, Money.FromTooman(command.Price));
 
         _repository.Update(product);
         _repository.Save();

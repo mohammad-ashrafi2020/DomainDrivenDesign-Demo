@@ -5,7 +5,7 @@ namespace Clean_arch.Domain.OrderAgg
 {
     public class OrderItem:BaseEntity
     {
-        public OrderItem(long orderId, int count, long productId, Mony price)
+        public OrderItem(long orderId, int count, long productId, Money price)
         {
             OrderId = orderId;
             Count = count;
@@ -16,6 +16,6 @@ namespace Clean_arch.Domain.OrderAgg
         public long OrderId { get; protected set; }
         public int Count { get; private set; }
         public long ProductId { get; private set; }
-        public Mony Price { get; private set; }
+        public Money Price { get; private set; }
     }
 }
