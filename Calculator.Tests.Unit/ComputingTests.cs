@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Calculator.Tests.Unit.ClassFixture;
+using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +9,25 @@ using Xunit;
 
 namespace Calculator.Tests.Unit
 {
-    public class ComputingTests
+    public class ComputingTests : IClassFixture<ComputingClassFixture>
     {
         Computing computing;
 
-        public ComputingTests()
+        public ComputingTests(ComputingClassFixture c)
         {
-            computing = new();
+            computing = c.computing;
         }
+
         [Fact]
         public void OddOrEvent_Should_Return_Odd_When_Input_is_OddValue()
         {
+            //arrange
+
+            //act
             var result = computing.OddOrEven(11);
 
+
+            //asserts
             result.Should().Be("Odd");
         }
 
@@ -51,6 +58,12 @@ namespace Calculator.Tests.Unit
                   computing.CalculateAge(0, 1400);
               });
             result.Should().Throw<ArgumentException>();
+        }
+
+        //
+        public void Dispose()
+        {
+            //
         }
     }
 }
