@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.CompilerServices;
+﻿using Clean_arch.Domain.Shared.Exceptions;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace Clean_arch.Domain.Shared;
 
@@ -9,7 +10,7 @@ public class Money : BaseValueObject
     public Money(int rialValue)
     {
         if (rialValue < 0)
-            throw new InvalidDataException();
+            throw new InvalidDomainDataException();
 
         RialValue = rialValue;
     }

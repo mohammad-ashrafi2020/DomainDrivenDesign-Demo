@@ -1,4 +1,5 @@
 ﻿using Clean_arch.Domain.Shared;
+using Clean_arch.Domain.Shared.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace Clean_arch.Domain.ProductAgg
 {
-    public class ProductImages : BaseEntity
+    public class ProductImage : BaseEntity
     {
-        public ProductImages(long productId, string imageName)
+        public ProductImage(long productId, string imageName)
         {
-            if (string.IsNullOrWhiteSpace(imageName))
-                throw new Exception("test");
+            NullOrEmptyDomainDataException.CheckString(imageName, "imageName");
 
             ProductId = productId;
             ImageName = imageName;

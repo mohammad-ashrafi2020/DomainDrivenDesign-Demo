@@ -8,13 +8,13 @@ public class Product : AggregateRoot
 {
     public string Title { get; private set; }
     public Money Money { get; private set; }
-    public ICollection<ProductImages> Images { get; private set; }
+    public ICollection<ProductImage> Images { get; private set; }
     public Product(string title, Money price)
     {
         Guard(title);
         Title = title;
         Money = price;
-        Images = new List<ProductImages>();
+        Images = new List<ProductImage>();
     }
 
     public void Edit(string title, Money price)
@@ -33,7 +33,7 @@ public class Product : AggregateRoot
     }
     public void AddImage(string imageName)
     {
-        Images.Add(new ProductImages(Id, imageName));
+        Images.Add(new ProductImage(Id, imageName));
     }
     private void Guard(string title)
     {
