@@ -3,6 +3,7 @@ using Clean_arch.Domain.OrderAgg.Events;
 using Clean_arch.Domain.OrderAgg.Exceptions;
 using Clean_arch.Domain.OrderAgg.Services;
 using Clean_arch.Domain.Shared;
+using Clean_arch.Domain.Shared.Exceptions;
 
 namespace Clean_arch.Domain.Orders;
 
@@ -17,6 +18,7 @@ public class Order : AggregateRoot
     public Order(long userId)
     {
         UserId = userId;
+        Items = new List<OrderItem>();
     }
     public void Finally()
     {
@@ -39,7 +41,7 @@ public class Order : AggregateRoot
     {
         var item = Items.FirstOrDefault(f => f.ProductId == productId);
         if (item == null)
-            throw new Exception("dasda");
+            throw new InvalidDomainDataException();
 
         Items.Remove(item);
         TotalItems -= item.Count;
