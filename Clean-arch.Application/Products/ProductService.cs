@@ -33,7 +33,7 @@ public class ProductService : IProductService
         var product = _repository.GetById(productId);
         return new ProductDto()
         {
-            Price = product.Price.RialValue,
+            Price = product.Money.RialValue,
             Id = productId,
             Title = product.Title
         };
@@ -43,7 +43,7 @@ public class ProductService : IProductService
     {
         return _repository.GetList().Select(product => new ProductDto()
         {
-            Price = product.Price.RialValue,
+            Price = product.Money.RialValue,
             Id = product.Id,
             Title = product.Title
         }).ToList();

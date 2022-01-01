@@ -41,6 +41,7 @@ public class OrderService : IOrderService
         return new OrderDto()
         {
             Id = order.Id,
+            UserId=order.UserId,
         };
     }
 
