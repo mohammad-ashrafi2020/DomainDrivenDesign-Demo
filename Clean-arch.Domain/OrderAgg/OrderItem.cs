@@ -5,6 +5,10 @@ namespace Clean_arch.Domain.OrderAgg
 {
     public class OrderItem:BaseEntity
     {
+        private OrderItem()
+        {
+
+        }
         public OrderItem(long orderId, int count, long productId, Money price)
         {
             OrderId = orderId;

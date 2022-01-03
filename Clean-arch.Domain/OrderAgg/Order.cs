@@ -9,8 +9,12 @@ namespace Clean_arch.Domain.Orders;
 
 public class Order : AggregateRoot
 {
+    private Order()
+    {
+
+    }
     public long UserId { get; private set; }
-    public int TotalPrice;
+    public int TotalPrice => Items.Sum(r => r.Price.RialValue);
     public int TotalItems { get; set; }
     public bool IsFinally { get; private set; }
     public DateTime FinallyDate { get; private set; }

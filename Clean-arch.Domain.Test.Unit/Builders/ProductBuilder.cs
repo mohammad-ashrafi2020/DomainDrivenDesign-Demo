@@ -8,6 +8,7 @@ namespace Clean_arch.Domain.Test.Unit.Builders;
 internal class ProductBuilder
 {
     private string _title = "test";
+    private string _description = "test";
     private Money _money = new Money(1000000);
 
     public ProductBuilder SetTitle(string title)
@@ -22,6 +23,6 @@ internal class ProductBuilder
     }
     public Product Build()
     {
-        return new Product(_title, _money);
+        return new Product(_title, _money, _description);
     }
 }

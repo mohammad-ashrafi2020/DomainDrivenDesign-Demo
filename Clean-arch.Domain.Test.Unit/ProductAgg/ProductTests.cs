@@ -52,7 +52,7 @@ namespace Clean_arch.Domain.Test.Unit
             var product = _productBuilder.SetTitle("test2").SetMoney(1000).Build();
 
             //act
-            product.Edit("edited", new Money(10000000));
+            product.Edit("edited", new Money(10000000),"das");
 
 
             //asserts
@@ -68,7 +68,7 @@ namespace Clean_arch.Domain.Test.Unit
             //act
             var action = () =>
               {
-                  product.Edit("", new Money(10000000));
+                  product.Edit("", new Money(10000000),"ads");
               };
 
 

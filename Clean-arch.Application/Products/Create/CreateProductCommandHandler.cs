@@ -20,9 +20,9 @@ namespace Clean_arch.Application.Products.Create
 
         public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var product = new Product(request.Title, Money.FromTooman(request.Price));
+            var product = new Product(request.Title, Money.FromTooman(request.Price), request.Description);
             _repository.Add(product);
-            _repository.Save();
+            await _repository.Save();
 
             return await Unit.Task;
         }

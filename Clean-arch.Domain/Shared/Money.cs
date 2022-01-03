@@ -5,7 +5,7 @@ namespace Clean_arch.Domain.Shared;
 
 public class Money : BaseValueObject
 {
-    public int RialValue { get; }
+    public int RialValue { get; private set; }
 
     public Money(int rialValue)
     {

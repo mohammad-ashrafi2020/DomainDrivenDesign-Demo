@@ -6,22 +6,29 @@ namespace Clean_arch.Domain.Products;
 
 public class Product : AggregateRoot
 {
+    private Product()
+    {
+
+    }
+    public string Description { get; private set; }
     public string Title { get; private set; }
     public Money Money { get; private set; }
     public ICollection<ProductImage> Images { get; private set; }
-    public Product(string title, Money price)
+    public Product(string title, Money price,string description)
     {
         Guard(title);
         Title = title;
         Money = price;
+        Description = description;
         Images = new List<ProductImage>();
     }
 
-    public void Edit(string title, Money price)
+    public void Edit(string title, Money price, string description)
     {
         Guard(title);
         Title = title;
         Money = price;
+        Description = description;
     }
     public void RemoveImage(long id)
     {
