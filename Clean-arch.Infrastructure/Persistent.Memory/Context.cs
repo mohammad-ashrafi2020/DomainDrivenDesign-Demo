@@ -5,6 +5,6 @@ namespace Clean_arch.Infrastructure.Persistent.Memory;
 
 public class Context
 {
-    public List<Product> Products { get; set; }
+    public List<Product> Products { get; set; } = new List<Product>();
     public List<Order> Orders { get; set; } = new List<Order>() { new Order(1) };
 }

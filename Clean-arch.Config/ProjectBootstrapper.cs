@@ -10,6 +10,8 @@ using Clean_arch.Infrastructure.Persistent.Memory;
 using Clean_arch.Infrastructure.Persistent.Memory.Orders;
 using Clean_arch.Infrastructure.Persistent.Memory.Products;
 using Microsoft.Extensions.DependencyInjection;
+using MediatR;
+using Clean_arch.Application.Products.Create;
 
 namespace Clean_arch.Config
 {
@@ -18,10 +20,11 @@ namespace Clean_arch.Config
         public static void Init(IServiceCollection services)
         {
             services.AddTransient<IOrderService, OrderService>();
-            services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IOrderDomainService, OrderDomainService>();
+
+            services.AddMediatR(typeof(CreateProductCommand).Assembly);
 
             services.AddScoped<ISmsService, SmsService>();
             services.AddSingleton<Context>();

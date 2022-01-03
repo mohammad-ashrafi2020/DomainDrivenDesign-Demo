@@ -14,9 +14,10 @@ public class ProductRepository : IProductRepository
         return _context.Products;
     }
 
-    public Product GetById(long id)
+    public async Task<Product> GetById(long id)
     {
-        return _context.Products.FirstOrDefault(f => f.Id == id);
+        var res= _context.Products.FirstOrDefault(f => f.Id == id);
+        return await Task.FromResult(res);
     }
 
     public void Add(Product product)
@@ -26,9 +27,9 @@ public class ProductRepository : IProductRepository
 
     public void Update(Product product)
     {
-        var oldProduct = GetById(product.Id);
-        _context.Products.Remove(oldProduct);
-        Add(product);
+        //var oldProduct = GetById(product.Id);
+        //_context.Products.Remove(oldProduct);
+        //Add(product);
     }
 
     public void Remove(Product product)
@@ -36,7 +37,7 @@ public class ProductRepository : IProductRepository
         _context.Products.Remove(product);
     }
 
-    public void Save()
+    public async Task Save()
     {
         //
     }
