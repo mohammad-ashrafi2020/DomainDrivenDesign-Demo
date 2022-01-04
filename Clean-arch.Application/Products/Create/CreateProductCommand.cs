@@ -13,7 +13,7 @@ namespace Clean_arch.Application.Products.Create
         {
             Title = title;
             Price = price;
-            Description = Description;
+            Description = description;
         }
 
         public string Title { get; set; }

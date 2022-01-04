@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Clean-arch.Infrastructure\Clean-arch.Infrastructure.csproj" />
+    <ProjectReference Include="..\Clean-arch.Query\Clean-arch.Query.csproj" />
   </ItemGroup>
 
 </Project>

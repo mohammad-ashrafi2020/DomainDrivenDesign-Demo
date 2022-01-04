@@ -12,6 +12,7 @@ using Clean_arch.Infrastructure.Persistant.Ef.Products;
 using Clean_arch.Domain.UserAgg;
 using Clean_arch.Infrastructure.Persistant.Ef.Users;
 using Clean_arch.Infrastructure.Persistant.Ef.Orders;
+using Clean_arch.Query.Products.GetById;
 
 namespace Clean_arch.Config
 {
@@ -24,6 +25,7 @@ namespace Clean_arch.Config
             services.AddTransient<IOrderRepository, OrderRepository>();
 
             services.AddMediatR(typeof(CreateProductCommand).Assembly);
+            services.AddMediatR(typeof(GetProductByIdQuery).Assembly);
             services.AddDbContext<AppDbContext>(option =>
             {
                 option.UseSqlServer(connectionString);
