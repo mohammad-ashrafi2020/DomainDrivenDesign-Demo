@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Clean_arch.Domain.Shared
 {
@@ -24,7 +19,7 @@ namespace Clean_arch.Domain.Shared
             CreationDate = new DateTime();
         }
     }
-    public class AggregateRoot:BaseEntity
+    public class AggregateRoot : BaseEntity
     {
         private readonly List<BaseDomainEvent> _domainEvents = new List<BaseDomainEvent>();
         [NotMapped]

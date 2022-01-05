@@ -1,5 +1,4 @@
 ﻿using Clean_arch.Domain.Shared.Exceptions;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace Clean_arch.Domain.Shared;
 

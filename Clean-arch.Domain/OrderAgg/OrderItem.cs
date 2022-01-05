@@ -1,9 +1,8 @@
-﻿using Clean_arch.Domain.Products;
-using Clean_arch.Domain.Shared;
+﻿using Clean_arch.Domain.Shared;
 
 namespace Clean_arch.Domain.OrderAgg
 {
-    public class OrderItem:BaseEntity
+    public class OrderItem : BaseEntity
     {
         private OrderItem()
         {

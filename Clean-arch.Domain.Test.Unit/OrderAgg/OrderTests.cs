@@ -4,8 +4,8 @@ using Clean_arch.Domain.OrderAgg.Services;
 using Clean_arch.Domain.Orders;
 using Clean_arch.Domain.Shared.Exceptions;
 using FluentAssertions;
-using Xunit;
 using NSubstitute;
+using Xunit;
 
 namespace Clean_arch.Domain.Test.Unit.OrderAgg;
 public class OrderTests

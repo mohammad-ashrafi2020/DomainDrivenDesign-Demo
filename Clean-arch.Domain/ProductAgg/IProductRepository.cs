@@ -1,6 +1,4 @@
-﻿using Clean_arch.Domain.Orders;
-
-namespace Clean_arch.Domain.Products;
+﻿namespace Clean_arch.Domain.Products;
 
 public interface IProductRepository
 {

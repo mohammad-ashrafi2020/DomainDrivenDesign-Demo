@@ -1,20 +1,15 @@
-﻿using Clean_arch.Query.Products.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Clean_arch.Domain.Products;
+﻿using Clean_arch.Domain.Products;
+using Clean_arch.Query.Products.DTOs;
 
 namespace Clean_arch.Query.Products
 {
     public class ProductMapper
     {
-
-        public static ProductDto MapProductToDto(Product product)
+        public static ProductDto MapProductToDto(Product? product)
         {
             if (product == null)
                 return null;
+
             return new ProductDto()
             {
                 Description = product.Description,
@@ -22,7 +17,6 @@ namespace Clean_arch.Query.Products
                 Id = product.Id,
                 Money = product.Money,
                 Title = product.Title
-
             };
         }
     }

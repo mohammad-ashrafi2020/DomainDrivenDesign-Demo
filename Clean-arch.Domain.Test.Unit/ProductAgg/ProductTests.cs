@@ -1,9 +1,8 @@
-using Clean_arch.Domain.Products;
+using Clean_arch.Domain.Shared;
 using Clean_arch.Domain.Shared.Exceptions;
 using Clean_arch.Domain.Test.Unit.Builders;
 using FluentAssertions;
 using System;
-using Clean_arch.Domain.Shared;
 using Xunit;
 
 namespace Clean_arch.Domain.Test.Unit
@@ -52,7 +51,7 @@ namespace Clean_arch.Domain.Test.Unit
             var product = _productBuilder.SetTitle("test2").SetMoney(1000).Build();
 
             //act
-            product.Edit("edited", new Money(10000000),"das");
+            product.Edit("edited", new Money(10000000), "das");
 
 
             //asserts
@@ -68,7 +67,7 @@ namespace Clean_arch.Domain.Test.Unit
             //act
             var action = () =>
               {
-                  product.Edit("", new Money(10000000),"ads");
+                  product.Edit("", new Money(10000000), "ads");
               };
 
 

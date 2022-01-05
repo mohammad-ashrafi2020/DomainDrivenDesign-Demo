@@ -1,11 +1,7 @@
 ﻿using Clean_arch.Domain.Products;
 using Clean_arch.Domain.Shared;
+using Clean_arch.Domain.Shared.Exceptions;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Clean_arch.Application.Products.Create
 {
@@ -20,6 +16,11 @@ namespace Clean_arch.Application.Products.Create
 
         public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
+            var validator = new CreateProductCommandValidator();
+            var checker = validator.Validate(request);
+            if (!checker.IsValid)
+                throw new InvalidDomainDataException(checker.Errors[0].ToString());
+
             var product = new Product(request.Title, Money.FromTooman(request.Price), request.Description);
             _repository.Add(product);
             await _repository.Save();

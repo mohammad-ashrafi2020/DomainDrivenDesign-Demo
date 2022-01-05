@@ -1,11 +1,6 @@
 ﻿using Clean_arch.Domain.ProductAgg;
 using Clean_arch.Domain.Shared.Exceptions;
 using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Clean_arch.Domain.Test.Unit.ProductAgg

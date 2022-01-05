@@ -4,17 +4,12 @@ using Clean_arch.Domain.ProductAgg;
 using Clean_arch.Domain.Products;
 using Clean_arch.Domain.Users;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Clean_arch.Infrastructure.Persistant.Ef
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
         }

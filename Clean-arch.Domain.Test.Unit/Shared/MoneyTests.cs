@@ -35,7 +35,7 @@ namespace Clean_arch.Domain.Test.Unit.Shared
             var toomanValue = 1000;
             var money = Money.FromTooman(toomanValue);
 
-            money.RialValue.Should().Be(toomanValue*10);
+            money.RialValue.Should().Be(toomanValue * 10);
 
         }
 
