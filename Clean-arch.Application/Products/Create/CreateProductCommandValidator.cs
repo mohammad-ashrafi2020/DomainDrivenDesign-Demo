@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Clean_arch.Application.Products.Create
 {
-    internal class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
+    public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
     {
         public CreateProductCommandValidator()
         {

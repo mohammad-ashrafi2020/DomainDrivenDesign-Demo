@@ -16,11 +16,6 @@ namespace Clean_arch.Application.Products.Create
 
         public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var validator = new CreateProductCommandValidator();
-            var checker = validator.Validate(request);
-            if (!checker.IsValid)
-                throw new InvalidDomainDataException(checker.Errors[0].ToString());
-
             var product = new Product(request.Title, Money.FromTooman(request.Price), request.Description);
             _repository.Add(product);
             await _repository.Save();

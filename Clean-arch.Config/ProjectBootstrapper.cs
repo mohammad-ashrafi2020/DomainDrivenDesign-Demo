@@ -1,4 +1,5 @@
 ﻿using Clean_arch.Application.Products.Create;
+using Clean_arch.Application.Shared;
 using Clean_arch.Contracts;
 using Clean_arch.Domain.Orders.Repository;
 using Clean_arch.Domain.Products;
@@ -9,6 +10,7 @@ using Clean_arch.Infrastructure.Persistant.Ef.Orders;
 using Clean_arch.Infrastructure.Persistant.Ef.Products;
 using Clean_arch.Infrastructure.Persistant.Ef.Users;
 using Clean_arch.Query.Products.GetById;
+using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,9 +24,12 @@ namespace Clean_arch.Config
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
-
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandValidationBehavior<,>));
             services.AddMediatR(typeof(CreateProductCommand).Assembly);
             services.AddMediatR(typeof(GetProductByIdQuery).Assembly);
+
+            services.AddValidatorsFromAssembly(typeof(CreateProductCommandValidator).Assembly);
+
             services.AddDbContext<AppDbContext>(option =>
             {
                 option.UseSqlServer(connectionString);
