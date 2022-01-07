@@ -8,13 +8,13 @@ using NSubstitute;
 using Xunit;
 
 namespace Clean_arch.Domain.Test.Unit.OrderAgg;
+
 public class OrderTests
 {
     [Fact]
     public void Should_Create_Order()
     {
         var order = new Order(1);
-
 
         order.UserId.Should().Be(1);
         order.IsFinally.Should().Be(false);
@@ -29,8 +29,9 @@ public class OrderTests
         //act
         order.Finally();
 
-        order.DomainEvents.Should().ContainEquivalentOf(new OrderFinalized(0, 1));
+        order.DomainEvents.Should().HaveCount(1);
     }
+
     [Fact]
     public void AddItem_Should_Throw_ProductNotFoundException_When_Product_Not_Exist()
     {
@@ -38,7 +39,6 @@ public class OrderTests
         var order = new Order(1);
         var orderDomainService = Substitute.For<IOrderDomainService>();
         orderDomainService.IsProductNotExsist(Arg.Any<long>()).Returns(true);
-
 
         //act
         var res = () => order.AddItem(1, 2, 30000, orderDomainService);
@@ -54,7 +54,6 @@ public class OrderTests
         var orderDomainService = Substitute.For<IOrderDomainService>();
         orderDomainService.IsProductNotExsist(Arg.Any<long>()).Returns(false);
 
-
         //act
         order.AddItem(1, 2, 30000, orderDomainService);
 
@@ -69,7 +68,6 @@ public class OrderTests
         var orderDomainService = Substitute.For<IOrderDomainService>();
         orderDomainService.IsProductNotExsist(Arg.Any<long>()).Returns(false);
         order.AddItem(1, 2, 30000, orderDomainService);
-
 
         //act
         order.AddItem(1, 3, 30000, orderDomainService);
@@ -98,10 +96,8 @@ public class OrderTests
         orderDomainService.IsProductNotExsist(Arg.Any<long>()).Returns(false);
         order.AddItem(1, 3, 30000, orderDomainService);
 
-
         //act
         order.RemoveItem(1);
-
 
         order.TotalItems.Should().Be(0);
     }

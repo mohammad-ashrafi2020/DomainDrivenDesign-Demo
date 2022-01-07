@@ -8,10 +8,12 @@ namespace Clean_arch.Application.Products.Create
     internal class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
     {
         private readonly IProductRepository _repository;
+        private readonly IMediator _mediator;
 
-        public CreateProductCommandHandler(IProductRepository repository)
+        public CreateProductCommandHandler(IProductRepository repository, IMediator mediator)
         {
             _repository = repository;
+            _mediator = mediator;
         }
 
         public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
@@ -19,7 +21,10 @@ namespace Clean_arch.Application.Products.Create
             var product = new Product(request.Title, Money.FromTooman(request.Price), request.Description);
             _repository.Add(product);
             await _repository.Save();
-
+            foreach (var @event in product.DomainEvents)
+            {
+                await _mediator.Publish(@event);
+            }
             return await Unit.Task;
         }
     }

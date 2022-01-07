@@ -1,4 +1,5 @@
 ﻿using Clean_arch.Domain.ProductAgg;
+using Clean_arch.Domain.ProductAgg.Events;
 using Clean_arch.Domain.Shared;
 using Clean_arch.Domain.Shared.Exceptions;
 
@@ -22,6 +23,7 @@ public class Product : AggregateRoot
         Money = price;
         Description = description;
         Images = new List<ProductImage>();
+        AddDomainEvent(new ProductCreated(Id, Title));
     }
 
     public void Edit(string title, Money price, string description)

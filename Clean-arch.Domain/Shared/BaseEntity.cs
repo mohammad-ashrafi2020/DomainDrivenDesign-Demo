@@ -6,22 +6,17 @@ namespace Clean_arch.Domain.Shared
     {
         public long Id { get; private set; }
         public DateTime CreationDate { get; }
+
         public BaseEntity()
         {
             CreationDate = new DateTime();
         }
     }
-    public class BaseDomainEvent
-    {
-        public DateTime CreationDate { get; protected set; }
-        public BaseDomainEvent()
-        {
-            CreationDate = new DateTime();
-        }
-    }
+
     public class AggregateRoot : BaseEntity
     {
         private readonly List<BaseDomainEvent> _domainEvents = new List<BaseDomainEvent>();
+
         [NotMapped]
         public List<BaseDomainEvent> DomainEvents => _domainEvents;
 
@@ -29,6 +24,7 @@ namespace Clean_arch.Domain.Shared
         {
             _domainEvents.Add(eventItem);
         }
+
         public void RemoveDomainEvent(BaseDomainEvent eventItem)
         {
             _domainEvents?.Remove(eventItem);
