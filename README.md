@@ -1,2 +1,2 @@
 # DomainDrivenDesign-Demo
-DDD + CQRS + Clean Arch + MediatR +  SqlServer + MongoDb
+DDD tactical patterns + CQRS + Clean Arch + MediatR +  SqlServer + MongoDb
