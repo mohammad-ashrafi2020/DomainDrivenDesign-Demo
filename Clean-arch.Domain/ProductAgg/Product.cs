@@ -32,6 +32,11 @@ public class Product : AggregateRoot
         Title = title;
         Money = price;
         Description = description;
+        AddDomainEvent(new ProductEdited()
+        {
+            Name = Title,
+            ProductId = Id
+        });
     }
 
     public void RemoveImage(long id)

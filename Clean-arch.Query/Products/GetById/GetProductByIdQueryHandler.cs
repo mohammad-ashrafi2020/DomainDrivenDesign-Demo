@@ -1,23 +1,23 @@
 ﻿using Clean_arch.Infrastructure.Persistant.Ef;
+using Clean_arch.Query.Models.Products;
 using Clean_arch.Query.Products.DTOs;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Clean_arch.Query.Products.GetById
 {
-    public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, ProductDto>
+    public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, ProductReadModel>
     {
-        private readonly AppDbContext _context;
+        private IProductReadRepository _readRepository;
 
-        public GetProductByIdQueryHandler(AppDbContext context)
+        public GetProductByIdQueryHandler(IProductReadRepository readRepository)
         {
-            _context = context;
+            _readRepository = readRepository;
         }
 
-        public async Task<ProductDto> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ProductReadModel> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
-            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == request.ProductId);
-            return ProductMapper.MapProductToDto(product);
+            return await _readRepository.GetById(request.ProductId);
         }
     }
 }

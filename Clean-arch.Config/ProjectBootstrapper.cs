@@ -9,11 +9,14 @@ using Clean_arch.Infrastructure.Persistant.Ef;
 using Clean_arch.Infrastructure.Persistant.Ef.Orders;
 using Clean_arch.Infrastructure.Persistant.Ef.Products;
 using Clean_arch.Infrastructure.Persistant.Ef.Users;
+using Clean_arch.Query.Models.Products;
 using Clean_arch.Query.Products.GetById;
+using Clean_arch.Query.Repositories;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Driver;
 
 namespace Clean_arch.Config
 {
@@ -28,6 +31,12 @@ namespace Clean_arch.Config
             services.AddMediatR(typeof(CreateProductCommand).Assembly);
             services.AddMediatR(typeof(GetProductByIdQuery).Assembly);
 
+            services.AddTransient<IProductReadRepository, ProductReadRepository>();
+
+            services.AddSingleton<IMongoClient, MongoClient>(option =>
+            {
+                return new MongoClient("mongodb://localhost:27017");
+            });
             services.AddValidatorsFromAssembly(typeof(CreateProductCommandValidator).Assembly);
 
             services.AddDbContext<AppDbContext>(option =>

@@ -1,5 +1,6 @@
 ﻿using Clean_arch.Application.Products.Create;
 using Clean_arch.Application.Products.Edit;
+using Clean_arch.Query.Models.Products;
 using Clean_arch.Query.Products.DTOs;
 using Clean_arch.Query.Products.GetList;
 using MediatR;
@@ -19,7 +20,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public async Task<List<ProductDto>> GetProducts()
+        public async Task<List<ProductReadModel>> GetProducts()
         {
             return await _mediator.Send(new GetProductListQuery());
         }

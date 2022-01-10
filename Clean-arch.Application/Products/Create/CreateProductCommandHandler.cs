@@ -1,4 +1,5 @@
-﻿using Clean_arch.Domain.Products;
+﻿using Clean_arch.Domain.ProductAgg.Events;
+using Clean_arch.Domain.Products;
 using Clean_arch.Domain.Shared;
 using Clean_arch.Domain.Shared.Exceptions;
 using MediatR;
@@ -21,10 +22,7 @@ namespace Clean_arch.Application.Products.Create
             var product = new Product(request.Title, Money.FromTooman(request.Price), request.Description);
             _repository.Add(product);
             await _repository.Save();
-            foreach (var @event in product.DomainEvents)
-            {
-                await _mediator.Publish(@event);
-            }
+            await _mediator.Publish(new ProductCreated(product.Id, product.Title));
             return await Unit.Task;
         }
     }
