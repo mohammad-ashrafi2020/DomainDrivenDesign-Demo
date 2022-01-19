@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Clean_arch.Application.Products.Create
 {
-    internal class CreateProductCommandHandler : IRequestHandler<CreateProductCommand>
+    internal class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, long>
     {
         private readonly IProductRepository _repository;
         private readonly IMediator _mediator;
@@ -17,13 +17,13 @@ namespace Clean_arch.Application.Products.Create
             _mediator = mediator;
         }
 
-        public async Task<Unit> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<long> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var product = new Product(request.Title, Money.FromTooman(request.Price), request.Description);
             _repository.Add(product);
             await _repository.Save();
             await _mediator.Publish(new ProductCreated(product.Id, product.Title));
-            return await Unit.Task;
+            return product.Id;
         }
     }
 }

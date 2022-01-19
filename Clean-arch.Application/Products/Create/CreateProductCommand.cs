@@ -2,7 +2,7 @@
 
 namespace Clean_arch.Application.Products.Create
 {
-    public class CreateProductCommand : IRequest
+    public class CreateProductCommand : IRequest<long>
     {
         public CreateProductCommand(string title, int price, string description)
         {
