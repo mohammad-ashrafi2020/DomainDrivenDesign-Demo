@@ -2,7 +2,7 @@
   <h1>پروژه آموزش DDD - CQRS - Web Api و معماری تمیز</h1>
 <p>
   موارد استفاده شده در پروژه :
-  DDD tactical patterns + CQRS + Clean Arch + MediatR +  SqlServer + MongoDb + Web Api
+  DDD tactical patterns + CQRS + Clean Arch + MediatR +  SqlServer + MongoDb + Web Api + Unit Testing
   </p>
 <p>
   لینک دوره : <a target="_blank" href="https://codeyad.com/c/20c3">  آموزش پیشرفته طراحی نرم افزار با Asp.Net Core</a>
