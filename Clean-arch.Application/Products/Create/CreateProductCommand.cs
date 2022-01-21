@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 
 namespace Clean_arch.Application.Products.Create
 {
@@ -14,5 +15,6 @@ namespace Clean_arch.Application.Products.Create
         public string Title { get; set; }
         public int Price { get; set; }
         public string Description { get; set; }
+        public IFormFile Image { get; set; }
     }
 }

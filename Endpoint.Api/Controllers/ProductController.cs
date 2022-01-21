@@ -21,19 +21,19 @@ namespace Endpoint.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<List<ProductReadModel>> GetProducts()
+        public async Task<List<ProductReadModel>> GetProducts(int pageId)
         {
             return await _mediator.Send(new GetProductListQuery());
         }
 
         [HttpGet("{id}")]
-        public async Task<ProductReadModel> GetProductById(long id)
+        public async Task<ProductReadModel> GetProductById([FromRoute] long id, [FromQuery] string test)
         {
             return await _mediator.Send(new GetProductByIdQuery(id));
         }
 
         [HttpPost]
-        public async Task<IActionResult> CraeteProduct(CreateProductCommand command)
+        public async Task<IActionResult> CraeteProduct([FromForm] CreateProductCommand command)
         {
             var result = await _mediator.Send(command);
             var url = Url.Action(nameof(GetProductById), "Product", new { id = result }, Request.Scheme);
@@ -41,17 +41,17 @@ namespace Endpoint.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> EditProduct(EditProductCommand command)
+        public async Task<IActionResult> EditProduct([FromBody] EditProductCommand command)
         {
             await _mediator.Send(command);
             return Ok();
         }
 
         [HttpDelete]
-        public async Task<IActionResult> CraeteProduct(EditProductCommand command)
+        public async Task<IActionResult> CraeteProduct([FromHeader] long id)
         {
             //
-            return Ok();
+            return Ok(id);
         }
     }
 }
