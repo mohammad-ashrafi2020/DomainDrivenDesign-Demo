@@ -1,8 +1,6 @@
-﻿using Clean_arch.Infrastructure.Persistant.Ef;
-using Clean_arch.Query.Models.Products;
-using Clean_arch.Query.Products.DTOs;
+﻿using Clean_arch.Query.Models.Products;
+using Clean_arch.Query.Models.Products.Repository;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Clean_arch.Query.Products.GetList
 {

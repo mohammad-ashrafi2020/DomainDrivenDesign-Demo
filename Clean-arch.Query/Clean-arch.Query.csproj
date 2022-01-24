@@ -11,9 +11,6 @@
     <PackageReference Include="MongoDB.Driver" Version="2.14.1" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Users\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Clean-arch.Infrastructure\Clean-arch.Infrastructure.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,7 @@
 ﻿using Clean_arch.Domain.ProductAgg.Events;
 using Clean_arch.Domain.Products;
 using Clean_arch.Query.Models.Products;
+using Clean_arch.Query.Models.Products.Repository;
 using MediatR;
 
 namespace Clean_arch.Query.EventHandlers.Products

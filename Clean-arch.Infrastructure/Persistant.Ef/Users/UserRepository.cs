@@ -18,6 +18,11 @@ namespace Clean_arch.Infrastructure.Persistant.Ef.Users
             _context.Add(user);
         }
 
+        public async Task<User> GetbyEmail(string email)
+        {
+            return await _context.Users.FirstOrDefaultAsync(f => f.Email == email);
+        }
+
         public async Task<User> GetById(long id)
         {
             return await _context.Users.FirstOrDefaultAsync(f => f.Id == id);
@@ -31,6 +36,11 @@ namespace Clean_arch.Infrastructure.Persistant.Ef.Users
         public void Update(User user)
         {
             _context.Update(user);
+        }
+
+        public bool UserIsExist(string email)
+        {
+            return _context.Users.Any(u => u.Email == email);
         }
     }
 }

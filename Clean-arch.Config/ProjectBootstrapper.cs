@@ -1,5 +1,6 @@
 ﻿using Clean_arch.Application.Products.Create;
 using Clean_arch.Application.Shared;
+using Clean_arch.Application.Users;
 using Clean_arch.Contracts;
 using Clean_arch.Domain.Orders.Repository;
 using Clean_arch.Domain.Products;
@@ -9,9 +10,10 @@ using Clean_arch.Infrastructure.Persistant.Ef;
 using Clean_arch.Infrastructure.Persistant.Ef.Orders;
 using Clean_arch.Infrastructure.Persistant.Ef.Products;
 using Clean_arch.Infrastructure.Persistant.Ef.Users;
-using Clean_arch.Query.Models.Products;
+using Clean_arch.Query.Models.Products.Repository;
+using Clean_arch.Query.Models.Users.Repository;
 using Clean_arch.Query.Products.GetById;
-using Clean_arch.Query.Repositories;
+using Clean_arch.Query.Shared.Repository;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +26,9 @@ namespace Clean_arch.Config
     {
         public static void Init(IServiceCollection services, string connectionString)
         {
+            //Domain Services
+            services.AddTransient<IUserDomainService, UserDomainService>();
+
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
@@ -31,6 +36,8 @@ namespace Clean_arch.Config
             services.AddMediatR(typeof(CreateProductCommand).Assembly);
             services.AddMediatR(typeof(GetProductByIdQuery).Assembly);
 
+            //services.AddTransient(typeof(IBaseReadRepository<>), typeof(BaseReadRepository<>));
+            services.AddTransient<IUserReadRepository, UserReadRepository>();
             services.AddTransient<IProductReadRepository, ProductReadRepository>();
 
             services.AddSingleton<IMongoClient, MongoClient>(option =>
