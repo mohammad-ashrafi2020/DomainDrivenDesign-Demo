@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Clean_arch.Application.Users.Register
 {
-    public record RegisterUserCommand(string Email) : IRequest;
+    public record RegisterUserCommand(string Email, string PhoneNumber) : IRequest<long>;
 
-    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand>
+    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, long>
     {
         private readonly IUserRepository _userReposutiry;
         private readonly IUserDomainService _userDomainService;
@@ -24,16 +24,16 @@ namespace Clean_arch.Application.Users.Register
             _mediator = mediator;
         }
 
-        public async Task<Unit> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+        public async Task<long> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-            var user = User.Register(request.Email, _userDomainService);
+            var user = User.Register(request.Email, request.PhoneNumber, _userDomainService);
             _userReposutiry.Add(user);
             await _userReposutiry.SaveChange();
             foreach (var @event in user.DomainEvents)
             {
                 await _mediator.Publish(@event);
             }
-            return Unit.Value;
+            return user.Id;
         }
     }
 }

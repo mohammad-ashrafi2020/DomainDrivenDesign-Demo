@@ -30,9 +30,9 @@ public class User : AggregateRoot
     public string Family { get; private set; }
     public PhoneNumber PhoneNumber { get; private set; }
 
-    public static User Register(string email, IUserDomainService domainService)
+    public static User Register(string email, string phoneNumber, IUserDomainService domainService)
     {
-        var user = new User("", "", null, email, domainService);
+        var user = new User("", "", new PhoneNumber(phoneNumber), email, domainService);
         user.AddDomainEvent(new UserRegistered(user.Id, email));
         return user;
     }
