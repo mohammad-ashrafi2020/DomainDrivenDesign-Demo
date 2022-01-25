@@ -6,6 +6,7 @@ using Clean_arch.Query.Products.GetById;
 using Clean_arch.Query.Products.GetList;
 using Endpoint.Api.ViewModels.Products;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,7 @@ namespace Endpoint.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<List<ProductViewModel>> GetProducts()
         {
             var products = await _mediator.Send(new GetProductListQuery());
