@@ -8,9 +8,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Endpoint.Api.Controllers
+namespace Endpoint.Api.Controllers.V1
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0", Deprecated = true)]
+    [Route("v{version:apiVersion}/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {

@@ -10,10 +10,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Endpoint.Api.Controllers
+namespace Endpoint.Api.Controllers.V1
 {
-    [Route("[controller]")]
     [ApiController]
+    [ApiVersion("1.0", Deprecated = true)]
+    [Route("v{version:apiVersion}/[controller]")]
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -34,7 +35,7 @@ namespace Endpoint.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductViewModel>> GetProductById(long id)
+        public virtual async Task<ActionResult<ProductViewModel>> GetProductById(long id)
         {
             var product = await _mediator.Send(new GetProductByIdQuery(id));
             if (product == null)
